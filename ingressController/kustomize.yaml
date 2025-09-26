@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: foo
+  name: openshift-config
   namespace: openshift-ingress-operator
 spec:
   destination:
