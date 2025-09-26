@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: foo
+  namespace: openshift-ingress-operator
+spec:
+  destination:
+    namespace: openshift-ingress-operator
+    server: https://kubernetes.default.svc 
+  project: default
+  source: 
+    path: ingressController
+    repoURL: https://github.com/nreilly-rhn/gitops-cluster.git
+    targetRevision: main
+    kustomize:
+      patches:
+        - target:
+          kind: ingresscontrollers
+          name: default
+          patch: |-
+            - op: add
+              path: /metadata/annotations/foo
+              value: bar
+      namespace: openshift-ingress-operator
+  syncPolicy: 
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=false
