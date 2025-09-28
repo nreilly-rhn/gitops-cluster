@@ -24,6 +24,6 @@ spec:
             value: strict-origin-when-cross-origin
       - name: Feature-Policy
         action:
-          type:
+          type: Set
           set:
             value: camera 'self'; animations 'self'
