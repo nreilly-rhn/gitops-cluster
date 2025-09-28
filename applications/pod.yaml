@@ -4,7 +4,7 @@ metadata:
   name: https-example
   namespace: ingress-test
   labels:
-    app: ingress-test
+    app: https-example
 spec:
   securityContext:
     runAsNonRoot: true
