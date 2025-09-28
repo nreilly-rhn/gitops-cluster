@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: https-example
+  namespace: ingress-test
+  labels:
+    app: ingress-test
+spec:
+  securityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: httpd
+      image: ubi8/httpd-24
+      volumeMounts:
+        - name: ssl
+          mountPath: "/etc/httpd/tls"
+      env:
+        - name: HTTPD_TLS_CERT_PATH
+          value: "/etc/httpd/tls"
+      ports:
+        - containerPort: 8443
+          protocol: TCP
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+  volumes:
+    - name: ssl
+      secret:
+        secretName: https-ssl-bundle
+        defaultMode: 0400
+        items:
+          - key: tls.key
+            path: localhost.key
+          - key: tls.crt
+            path: localhost.crt
