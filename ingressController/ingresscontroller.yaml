@@ -16,4 +16,14 @@ spec:
         action:
           type: Set
           set:
-            value: DENY
+            value: SAMEORIGIN
+      - name: Referrer-Policy
+        action:
+          type: Set
+          set:
+            value: strict-origin-when-cross-origin
+      - name: Feature-Policy
+        action:
+          type:
+          set:
+            value: camera 'self'; animations 'self'
