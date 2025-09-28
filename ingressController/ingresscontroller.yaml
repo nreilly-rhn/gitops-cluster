@@ -1,0 +1,16 @@
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: default
+  namespace: openshift-ingress-operator
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false,ServerSideApply=true
+spec:
+  httpHeaders:
+    actions:
+      response:
+      - name: X-Frame-Options
+        action:
+          type: Set
+          set:
+            value: DENY
