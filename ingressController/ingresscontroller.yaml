@@ -6,6 +6,8 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: Delete=false,ServerSideApply=true
 spec:
+  tuningOptions:
+    serverTimeout: 600
   httpHeaders:
     actions:
       response:
