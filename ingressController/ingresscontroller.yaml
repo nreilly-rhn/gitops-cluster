@@ -8,7 +8,7 @@ metadata:
 spec:
   tuningOptions:
     serverTimeout: "600s"
-    headerBufferBytes: 131072
+    headerBufferBytes: 13107200
   httpHeaders:
     actions:
       response:
