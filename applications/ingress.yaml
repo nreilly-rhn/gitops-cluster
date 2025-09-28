@@ -19,6 +19,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: example
+                name: https-example
                 port:
                   number: 8443
