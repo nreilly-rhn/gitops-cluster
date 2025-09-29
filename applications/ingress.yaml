@@ -15,16 +15,16 @@ spec:
       apiGroup: "route.openshift.io"
       kind: Route
       name: https-example
-  tls:
-    - {}
-  rules:
-    - host: https-example.apps.sno.home.naramajac.com.au
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: https-example
-                port:
-                  number: 8443
+#  tls:
+#    - {}
+#  rules:
+#    - host: https-example.apps.sno.home.naramajac.com.au
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: https-example
+#                port:
+#                  number: 8443
