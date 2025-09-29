@@ -14,8 +14,8 @@ spec:
       apiGroup: "route.openshift.io"
       kind: Route
       name: https-example
-#  tls:
-#    - {}
+  tls:
+    - {}
 #  rules:
 #    - host: https-example-ingress-test.apps.sno.home.naramajac.com.au
 #      http:
