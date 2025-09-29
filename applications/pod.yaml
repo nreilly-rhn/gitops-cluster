@@ -37,9 +37,9 @@ spec:
           - key: index.html
             path: index.html
           - key: bar.html
-            path: bar/index.html
+            path: bar.html
           - key: foo.html
-            path: foo/index.html
+            path: foo.html
     - name: ssl
       secret:
         secretName: https-ssl-bundle
