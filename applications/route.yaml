@@ -6,6 +6,7 @@ metadata:
     argocd.argoproj.io/sync-options: Delete=false,ServerSideApply=true
   labels:
     app.kubernetes.io/instance: applications
+  generateName: https-example-
   namespace: ingress-test
 spec:
   httpHeaders:
