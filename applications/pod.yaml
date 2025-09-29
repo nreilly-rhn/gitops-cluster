@@ -16,6 +16,8 @@ spec:
       volumeMounts:
         - name: ssl
           mountPath: "/etc/httpd/tls"
+        - name: webdir
+          mountPath: "/var/www/html"
       env:
         - name: HTTPD_TLS_CERT_PATH
           value: "/etc/httpd/tls"
@@ -27,7 +29,17 @@ spec:
         capabilities:
           drop:
             - ALL
-  volumes:
+  volumes:    
+    - name: webdir
+      configMap:
+        name: 'web-dir'
+        items:
+          - key: index.html
+            path: index.html
+          - key: bar.html
+            path: bar/index.html
+          - key: foo.html
+            path: foo/index.html
     - name: ssl
       secret:
         secretName: https-ssl-bundle
