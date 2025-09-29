@@ -9,6 +9,7 @@ metadata:
   name: https-example
   namespace: ingress-test
 spec:
+  ingressClassName: null
   defaultBackend:
     resource:
       apiGroup: "route.openshift.io"
