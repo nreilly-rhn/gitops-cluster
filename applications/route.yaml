@@ -15,6 +15,14 @@ spec:
   path: /
   port:
     targetPort: https
+  httpHeaders:
+    actions:
+      response:
+      - name: X-Frame-Options
+        action:
+          type: Set
+          set:
+            value: DENY
   tls:
     destinationCACertificate: |
       -----BEGIN CERTIFICATE-----
