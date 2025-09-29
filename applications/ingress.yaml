@@ -17,7 +17,7 @@ spec:
   tls:
     - {}
   rules:
-    - host: https-example-ingress-test.apps.sno.home.naramajac.com.au
+    - host: https-example.apps.sno.home.naramajac.com.au
       http:
         paths:
           - path: /
