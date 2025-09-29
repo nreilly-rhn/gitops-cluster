@@ -18,11 +18,16 @@ spec:
   httpHeaders:
     actions:
       response:
-      - name: X-Frame-Options
+      - name: Referrer-Policy
         action:
           type: Set
           set:
-            value: DENY
+            value: strict-origin-when-cross-origin
+      - name: Feature-Policy
+        action:
+          type: Set
+          set:
+            value: camera 'self'; animations 'self'
   tls:
     destinationCACertificate: |
       -----BEGIN CERTIFICATE-----
