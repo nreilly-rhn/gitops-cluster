@@ -10,11 +10,11 @@ metadata:
   namespace: ingress-test
 spec:
   ingressClassName: null
-  defaultBackend:
-    resource:
-      apiGroup: "route.openshift.io"
-      kind: Route
-      name: https-example
+#  defaultBackend:
+#    resource:
+#      apiGroup: "route.openshift.io"
+#      kind: Route
+#      name: https-example
 #  tls:
 #    - {}
 #  rules:
