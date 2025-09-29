@@ -1,19 +1,69 @@
-#app.kubernetes.io/instance: applications
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   annotations:
-    argocd.argoproj.io/sync-options: Delete=false,ServerSideApply=true
+    haproxy.router.openshift.io/hsts_header: max-age=31536000
+    haproxy.router.openshift.io/rewrite-target: /
+    route.openshift.io/destination-ca-certificate-secret: https-ssl-bundle
+    route.openshift.io/termination: reencrypt
   labels:
     app.kubernetes.io/instance: applications
-  name: https-example-r9zcc
+  name: https-example
   namespace: ingress-test
 spec:
-  httpHeaders:
-    actions:
-      response:
-      - name: X-Frame-Options
-        action:
-          type: Set
-          set:
-            value: DENY
+  host: https-example-ingress-test.apps.sno.home.naramajac.com.au
+  path: /
+  port:
+    targetPort: https
+  tls:
+    destinationCACertificate: |
+      -----BEGIN CERTIFICATE-----
+      MIID6jCCAtKgAwIBAgIIYCCXGMTTAPYwDQYJKoZIhvcNAQELBQAwNjE0MDIGA1UE
+      Awwrb3BlbnNoaWZ0LXNlcnZpY2Utc2VydmluZy1zaWduZXJAMTc1ODc2NTUxNjAe
+      Fw0yNTA5MjgyMzMzMjlaFw0yNzA5MjgyMzMzMzBaMCkxJzAlBgNVBAMTHmh0dHBz
+      LWV4YW1wbGUuaW5ncmVzcy10ZXN0LnN2YzCCASIwDQYJKoZIhvcNAQEBBQADggEP
+      ADCCAQoCggEBAMnh38Un5BxNKDU+nzGVT0mVaG1S5nDCO2rq1zrYSgyMnxjiHxUp
+      4TcwzkEsoW5/KeGXrGDuW7CjNLFNVS5t5JKtSqPiGVoYCuwNq0NiuYlnGiLLEYR7
+      9mocgy4TSYp4ZPjK/v28/e+N0AkeBo/HhTrhwbHaRD4w+t18WSAyaruAGVnv4Mwt
+      0SVuRRRyt7OCSSQ5KkXOtFP5wBZ0vbBhk5myq1lMCdNsIYQ5L+imS34EoXdLnp0G
+      vwO5PDltwwgyhUcCu07XQOO7tVytSwKjz+3nEFceEqYXlxNosKcvxL0lJAfzJKzv
+      chbGidW4FCYBmOUDhvHW0O46F8bYQ+bpGGECAwEAAaOCAQcwggEDMA4GA1UdDwEB
+      /wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAMBgNVHRMBAf8EAjAAMB0GA1Ud
+      DgQWBBT5KBL+tohs4An/HtgHDBYGmgD40jAfBgNVHSMEGDAWgBQpKr2TAkTvEvb7
+      6q+Y+NpJRa3dXzBXBgNVHREEUDBOgh5odHRwcy1leGFtcGxlLmluZ3Jlc3MtdGVz
+      dC5zdmOCLGh0dHBzLWV4YW1wbGUuaW5ncmVzcy10ZXN0LnN2Yy5jbHVzdGVyLmxv
+      Y2FsMDUGCysGAQQBkggRZAIBBCYTJDNlMzAxOGRkLTczZWUtNDJhMi05NTg5LTg3
+      OTc1ZmZhZWM2ZjANBgkqhkiG9w0BAQsFAAOCAQEATQ5/r2zlDQ67jvFq7KbjGXHh
+      94N8qZgVFeRndxM46xdPAk4Ve4bd5kM4rYkLIyYDWej6UlLSmQYVdTv6Mi3eczYv
+      vopBPn0zDF/HAyZvBW4Gp3FCHWc68ozuPpHB59nWgBhnis4C1thbQlf8hzPkOsK3
+      +ErKyOeH3k0K4qprPPrds83ueW75DybX7a+q/YtGlc4UAzk9HJEgKyMm3KENMzeD
+      t6OSLi66NdoX5+aUYaYSD3F9z5A/RCHUDaVe9FjGLNfjn8CRazkItvfhILj4n6T9
+      hNSffOjTCJBjqipfi1km+Jn0wvwUR1Kc87quspBNgYTskoFGaIshaN4H4Hlw/g==
+      -----END CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
+      MIIDUTCCAjmgAwIBAgIIIVtNMn+L8zYwDQYJKoZIhvcNAQELBQAwNjE0MDIGA1UE
+      Awwrb3BlbnNoaWZ0LXNlcnZpY2Utc2VydmluZy1zaWduZXJAMTc1ODc2NTUxNjAe
+      Fw0yNTA5MjUwMTU4MzVaFw0yNzExMjQwMTU4MzZaMDYxNDAyBgNVBAMMK29wZW5z
+      aGlmdC1zZXJ2aWNlLXNlcnZpbmctc2lnbmVyQDE3NTg3NjU1MTYwggEiMA0GCSqG
+      SIb3DQEBAQUAA4IBDwAwggEKAoIBAQCtEndOeyO6ITGlbJwilBc3mC7kw1GWdhyP
+      emDaAz0dvDCb6RGrjKy+QfxfCwOziOXBir57OOrP1ETxouPaf5eG5qpsXexiTPrO
+      7Clor/VHmP+QGbGsn2W2zoggpEEzsQUcWeGeKNjbmTkJJUzyeaGcYUfWO+ID5+7W
+      4I+pXczc0nLabe7l4XBtkL8zql56+tyyvw6ntKtvwz6DrGfK8navcqykzpZXX6ua
+      yOYSLZL/w/96e+SC6JdUgbCYjJlZOy2oqlPRpvAPVJhUVa+tSChAd0u3Kr15mG9R
+      73zutDJG6SRZJi3oPzVoCwd2u5HjnVDYgA6qOsjxOcvuDgYryfjZAgMBAAGjYzBh
+      MA4GA1UdDwEB/wQEAwICpDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBQpKr2T
+      AkTvEvb76q+Y+NpJRa3dXzAfBgNVHSMEGDAWgBQpKr2TAkTvEvb76q+Y+NpJRa3d
+      XzANBgkqhkiG9w0BAQsFAAOCAQEAnDJFTv0gP9iAhWs3b5WksyXVTEIPdDnDmfYu
+      lBodLJHBCrMLQLeKFua3pkxvhulg0ilwbtHuTMoygsJ+Q0wb692LrzfH+WZ7f3qH
+      D4EaDNSGQtBTVg+piAW9poW/5l2mieEtD3l01tvm608oC4u0kRTvl/yVFMDjyDe8
+      AKMeM1Gpk8ghhRmhCT9Jx+1paJW7nSLCWpzJAKQ7KsGGMr2sKgw6dxZIQR47RnB6
+      AQUGn/E2Ggq/vY/NruKEUYJgl0OnGq4XPR4uPPec5E0dPuv1jcwxoap2kpCt8ezf
+      PeaAYyXwHO0lJkenl/O3eHEPxeNrhXjSchaXQ5nHRiGXKvTdYA==
+      -----END CERTIFICATE-----
+    insecureEdgeTerminationPolicy: Redirect
+    termination: reencrypt
+  to:
+    kind: Service
+    name: https-example
+    weight: 100
+  wildcardPolicy: None
