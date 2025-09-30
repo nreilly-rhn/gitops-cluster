@@ -6,7 +6,8 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: Delete=false,ServerSideApply=true
 spec:
-  defaultCertificate: default-ingress-cert # <- This is a secret in the openshift-ingress namespace
+  defaultCertificate: 
+    name: default-ingress-cert # <- This is a secret in the openshift-ingress namespace
   tuningOptions:
     serverTimeout: "600s"
     headerBufferBytes: 13107200
