@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-dir
+  namespace: ingress-test
+data:
+  bar.html: |
+    bar
+  foo.html: |
+    foo
+  index.html: |
+    index

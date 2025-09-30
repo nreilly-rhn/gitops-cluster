@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     route.openshift.io/termination: "reencrypt"
-    route.openshift.io/destination-ca-certificate-secret: https-ssl-bundle
+#    route.openshift.io/destination-ca-certificate-secret: https-ssl-bundle
     haproxy.router.openshift.io/hsts_header: max-age=31536000
     haproxy.router.openshift.io/rewrite-target: '/'
   name: https-example

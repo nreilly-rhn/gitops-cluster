@@ -14,8 +14,8 @@ spec:
     - name: httpd
       image: ubi8/httpd-24
       volumeMounts:
-        - name: ssl
-          mountPath: "/etc/httpd/tls"
+#        - name: ssl
+#          mountPath: "/etc/httpd/tls"
         - name: webdir
           mountPath: "/var/www/html"
       env:
@@ -40,12 +40,12 @@ spec:
             path: bar.html
           - key: foo.html
             path: foo.html
-    - name: ssl
-      secret:
-        secretName: https-ssl-bundle
-        defaultMode: 0400
-        items:
-          - key: tls.key
-            path: localhost.key
-          - key: tls.crt
-            path: localhost.crt
+#    - name: ssl
+#      secret:
+#        secretName: https-ssl-bundle
+#        defaultMode: 0400
+#        items:
+#          - key: tls.key
+#            path: localhost.key
+#          - key: tls.crt
+#            path: localhost.crt
