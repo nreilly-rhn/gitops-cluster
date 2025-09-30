@@ -1,15 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    route.openshift.io/termination: "reencrypt"
-#    route.openshift.io/destination-ca-certificate-secret: https-ssl-bundle
-    haproxy.router.openshift.io/hsts_header: max-age=31536000
-    haproxy.router.openshift.io/rewrite-target: '/'
-  name: https-example
-  namespace: ingress-test
-spec:
-  ingressClassName: null
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  annotations:
+#    route.openshift.io/termination: "reencrypt"
+##    route.openshift.io/destination-ca-certificate-secret: https-ssl-bundle
+#    haproxy.router.openshift.io/hsts_header: max-age=31536000
+#    haproxy.router.openshift.io/rewrite-target: '/'
+#  name: https-example
+#  namespace: ingress-test
+#spec:
+#  ingressClassName: null
 #  defaultBackend:
 #    resource:
 #      apiGroup: "route.openshift.io"
