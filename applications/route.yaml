@@ -4,7 +4,7 @@ metadata:
   annotations:
     haproxy.router.openshift.io/hsts_header: max-age=31536000
     haproxy.router.openshift.io/rewrite-target: /
-    route.openshift.io/destination-ca-certificate-secret: dest-ca-cert
+    #route.openshift.io/destination-ca-certificate-secret: dest-ca-cert
     route.openshift.io/termination: reencrypt
   labels:
     app.kubernetes.io/instance: applications
