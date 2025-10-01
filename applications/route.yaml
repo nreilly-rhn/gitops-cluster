@@ -4,7 +4,6 @@ metadata:
   annotations:
     haproxy.router.openshift.io/hsts_header: max-age=31536000
     haproxy.router.openshift.io/rewrite-target: /
-    #route.openshift.io/destination-ca-certificate-secret: dest-ca-cert
     route.openshift.io/termination: reencrypt
   labels:
     app.kubernetes.io/instance: applications
@@ -71,42 +70,3 @@ spec:
     name: https-example
     weight: 100
   wildcardPolicy: None
----
-#apiVersion: route.openshift.io/v1
-#kind: Route
-#metadata:
-#  annotations:
-#    haproxy.router.openshift.io/hsts_header: max-age=31536000
-#    haproxy.router.openshift.io/rewrite-target: /
-#    route.openshift.io/destination-ca-certificate-secret: https-ssl-bundle
-#    route.openshift.io/termination: reencrypt
-#  labels:
-#    app.kubernetes.io/instance: applications
-#  name: https-example-foo
-#  namespace: ingress-test
-#spec:
-#  host: https-example-ingress-test.apps.sno.home.naramajac.com.au
-#  path: /foo
-#  port:
-#    targetPort: https
-#  httpHeaders:
-#    actions:
-#      response:
-#      - name: Referrer-Policy
-#        action:
-#          type: Set
-#          set:
-#            value: strict-origin-when-cross-origin
-#      - name: Feature-Policy
-#        action:
-#          type: Set
-#          set:
-#            value: camera 'self'; animations 'self'
-#  tls:
-#    insecureEdgeTerminationPolicy: Redirect
-#    termination: reencrypt
-#  to:
-#    kind: Service
-#    name: https-example
-#    weight: 100
-#  wildcardPolicy: None
